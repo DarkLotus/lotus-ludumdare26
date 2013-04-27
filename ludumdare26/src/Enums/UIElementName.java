@@ -9,6 +9,6 @@ package Enums;
  */
 public enum UIElementName {
 	Money,
-	Population
+	Population, Date
 	
 }

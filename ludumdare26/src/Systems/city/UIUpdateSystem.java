@@ -14,6 +14,7 @@ import com.artemis.ComponentMapper;
 import com.artemis.Entity;
 import com.artemis.annotations.Mapper;
 import com.artemis.systems.IntervalEntityProcessingSystem;
+import com.jameskidd.ludumdare26.Logger;
 
 
 import components.LabelComponent;
@@ -50,11 +51,18 @@ public class UIUpdateSystem extends IntervalEntityProcessingSystem {
 	protected void process(Entity e) {
 		World world = (World) e.getWorld();
 		LabelComponent l = lc.get(e);
+		
 		switch(l.ElementName){
 			case Money:
 				l.LabelString =  "$" + ComponentHelper.GetPlayerComponent(world).Money;
+				break;
+			case Date:
+				l.LabelString = "Date: " + ComponentHelper.getWorldComponent(world).Date();
+				break;
+			default:
+				break;
 		}
-		
+		Logger.Log(""+e.getId() + l.ElementName + " " + l.LabelString);
 	
 		
 	}

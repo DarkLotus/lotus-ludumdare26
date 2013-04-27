@@ -3,6 +3,8 @@
  */
 package com.jameskidd.ludumdare26;
 
+import Enums.ZoneType;
+
 import com.artemis.Entity;
 import com.artemis.World;
 import com.artemis.managers.GroupManager;
@@ -17,6 +19,7 @@ import components.UIButtonComponent;
 import components.WorldPositionComponent;
 import components.city.PowerDeltaComponent;
 import components.city.TrafficComponent;
+import components.city.WorldComponent;
 import components.city.ZoneComponent;
 
 /**
@@ -70,7 +73,7 @@ public class EntityFactory {
 		entity.addComponent(new WorldPositionComponent());
 		entity.addComponent(new OnCursorComponent());
 		entity.addComponent(new SpriteComponent("Residential"));
-		entity.addComponent(new ZoneComponent());
+		entity.addComponent(new ZoneComponent(ZoneType.Residential));
 		entity.addComponent(new PowerDeltaComponent());
 		//world.getManager(GroupManager.class).add(entity, "persist");
 		world.getManager(GroupManager.class).add(entity, "Residential");
@@ -82,7 +85,7 @@ public class EntityFactory {
 		entity.addComponent(new WorldPositionComponent());
 		entity.addComponent(new OnCursorComponent());
 		entity.addComponent(new SpriteComponent("Commercial"));
-		entity.addComponent(new ZoneComponent());
+		entity.addComponent(new ZoneComponent(ZoneType.Commercial));
 		entity.addComponent(new PowerDeltaComponent());
 		//world.getManager(GroupManager.class).add(entity, "persist");
 		world.getManager(GroupManager.class).add(entity, "Commercial");
@@ -93,7 +96,7 @@ public class EntityFactory {
 		entity.addComponent(new WorldPositionComponent());
 		entity.addComponent(new OnCursorComponent());
 		entity.addComponent(new SpriteComponent("Industrial"));
-		entity.addComponent(new ZoneComponent());
+		entity.addComponent(new ZoneComponent(ZoneType.Industrial));
 		entity.addComponent(new PowerDeltaComponent());
 		//world.getManager(GroupManager.class).add(entity, "persist");
 		world.getManager(GroupManager.class).add(entity, "Industrial");
@@ -108,6 +111,7 @@ public class EntityFactory {
 		entity.addComponent(new PowerDeltaComponent());
 		//world.getManager(GroupManager.class).add(entity, "persist");
 		world.getManager(GroupManager.class).add(entity, "Power");
+		entity.addComponent(new ZoneComponent(ZoneType.PowerPlant));
 		return entity;
 	}
 	/**
@@ -120,10 +124,19 @@ public class EntityFactory {
 		entity.addComponent(new OnCursorComponent());
 		entity.addComponent(new SpriteComponent("Road"));
 		entity.addComponent(new TrafficComponent());
-		//entity.addComponent(new IndustrialComponent());
-		//entity.addComponent(new PowerDeltaComponent());
+		entity.addComponent(new ZoneComponent(ZoneType.Road));
 		//world.getManager(GroupManager.class).add(entity, "persist");
 		world.getManager(GroupManager.class).add(entity, "Road");
+		return entity;
+	}
+	/**
+	 * @param world
+	 * @return
+	 */
+	public static Entity createWorld(World world) {
+		Entity entity = world.createEntity();
+		entity.addComponent(new WorldComponent());
+		world.getManager(GroupManager.class).add(entity, "World");
 		return entity;
 	}
 

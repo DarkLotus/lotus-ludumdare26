@@ -72,9 +72,9 @@ public class World extends com.artemis.World {
 		//_world.setSystem(new AISystem(1));
 		float tickRate = 0.016f;
 		
-		setSystem(new WorldSystem(tickRate));
+		setSystem(new WorldSystem(tickRate*24));
 		setSystem(new NPCSystem(tickRate));
-		setSystem(new UIUpdateSystem(1f));
+		setSystem(new UIUpdateSystem(tickRate*24));
 		//setSystem(new ResidentialSystem(1f));
 		setupSomeButtons();
 		setUpsomeLabels();
@@ -85,6 +85,7 @@ public class World extends com.artemis.World {
 
 		addEntity(EntityFactory.createMap(this, "world.tmx"));
 		addEntity(EntityFactory.createPlayer(this, "lotus"));
+		addEntity(EntityFactory.createWorld(this));
 		//_world.addEntity(EntityFactory.createObject(_world, ""));
 
 		
@@ -99,6 +100,11 @@ public class World extends com.artemis.World {
 		entity.addComponent(new LabelComponent("$", null, UIElementName.Money));
 				
 		addEntity(entity);
+		
+		Entity entity2 = createEntity();
+		entity2.addComponent(new LabelComponent("", null, UIElementName.Date));
+				
+		addEntity(entity2);
 		
 	}
 	

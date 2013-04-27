@@ -4,6 +4,7 @@
 package components.city;
 
 import Enums.ZoneDensity;
+import Enums.ZoneType;
 
 import com.artemis.Component;
 
@@ -12,11 +13,18 @@ import com.artemis.Component;
  * Stores player data, Score,Lives,Money etc
  */
 public class ZoneComponent extends Component {
+	public ZoneType zoneType;
+	
 	public ZoneDensity Density = ZoneDensity.Low;
 	public int Population = 0;
 	
 	//Max pop is 100 * the zones density
 	public int MaxPop(){
+		return 100*(Density.ordinal()+1);
+	}
+	
+	public int Employeed = 0;
+	public int MaxEmployees(){
 		return 100*(Density.ordinal()+1);
 	}
 
@@ -26,11 +34,21 @@ public class ZoneComponent extends Component {
 	//public int Employeed = 0;
 
 
-	public ZoneComponent()
-	{}
+	public ZoneComponent(ZoneType type)
+	{
+		zoneType = type;
+	}
 	
 	@Override
 	public String toString(){
-		return "P:" + Population + "H:" + Happiness;
+		switch(zoneType){
+			case Residential:
+				return "P:" + Population + " H:" + Happiness+ " D:" + Density;
+			case Commercial:
+				return "E:" + Employeed + " D:" + Density;
+			default:
+				return zoneType.toString();
+		}
+		
 	}
 }

@@ -31,6 +31,7 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import components.PlayerComponent;
+import components.city.WorldComponent;
 
 
 /**
@@ -67,6 +68,14 @@ public class ComponentHelper  {
 	 */
 	public static PlayerComponent GetPlayerComponent(World world) {
 		return world.getManager(GroupManager.class).getEntities("Player").get(0).getComponent(PlayerComponent.class);
+	}
+
+	/**
+	 * @param world
+	 * @return
+	 */
+	public static WorldComponent getWorldComponent(World world) {
+		return world.getManager(GroupManager.class).getEntities("World").get(0).getComponent(WorldComponent.class);
 	}
 	
 	

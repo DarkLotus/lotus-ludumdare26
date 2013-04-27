@@ -17,6 +17,7 @@ import com.jameskidd.ludumdare26.GraphicsManager;
 
 import components.SpriteComponent;
 import components.WorldPositionComponent;
+import components.city.ZoneComponent;
 
 
 /**
@@ -29,7 +30,8 @@ public class SpriteRenderSystem extends EntityProcessingSystem {
 
 	@Mapper
 	ComponentMapper<SpriteComponent> sc;
-	
+	@Mapper
+	ComponentMapper<ZoneComponent> zc;
 
 
 
@@ -77,6 +79,12 @@ public class SpriteRenderSystem extends EntityProcessingSystem {
 				textureRegion = GraphicsManager.getManager().getSpriteWithXY(0, 0);
 			}
 			this._batch.draw(textureRegion, w.x, w.y);
+		}
+		if(this.zc.has(e)){
+				ZoneComponent z = zc.get(e);
+				WorldPositionComponent w = wc.get(e);
+				CharSequence str = z.toString();
+				this._font.draw(_batch, str, w.x, w.y);	
 		}
 		
 		

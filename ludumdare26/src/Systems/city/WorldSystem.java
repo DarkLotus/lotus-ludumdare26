@@ -17,19 +17,23 @@ import com.artemis.systems.VoidEntitySystem;
 
 
 import components.OnCursorComponent;
+import components.SpriteComponent;
+import components.city.WorldComponent;
 
 
 /**
  * @author James
  * Responsible for spawning new actors etc
  */
-public class WorldSystem extends VoidIntervalEntitySystem {
+public class WorldSystem extends IntervalEntityProcessingSystem {
 	
+	@Mapper
+	ComponentMapper<WorldComponent> wc;
 	/**
 	 * @param interval
 	 */
 	public WorldSystem(float interval) {
-		super(interval);
+		super(Aspect.getAspectForAll(WorldComponent.class), interval);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -40,11 +44,26 @@ public class WorldSystem extends VoidIntervalEntitySystem {
 	protected void begin() {
 
 	}
-	
+
+
+	/* (non-Javadoc)
+	 * @see com.artemis.systems.IntervalEntityProcessingSystem#process(com.artemis.Entity)
+	 */
 	@Override
-	protected void processSystem() {
-		// TODO Auto-generated method stub
+	protected void process(Entity e) {
+		WorldComponent worldComponent = wc.get(e);
+		worldComponent.Day++;
+		if(worldComponent.Day > 30) {
+			worldComponent.Day = 1;
+			worldComponent.Month++;
+		}
+		if(worldComponent.Month > 12){
+			worldComponent.Month = 1;
+			worldComponent.Year++;
+		}
 		
 	}
+	
+	
 
 }
