@@ -25,7 +25,7 @@ public class ZoneComponent extends Component {
 	
 	public int Employeed = 0;
 	public int MaxEmployees(){
-		return 100*(Density.ordinal()+1);
+		return 25*(Density.ordinal()+1*2);
 	}
 
 	//Happiness based off comercial districts in range? - industrial zones + parks?
@@ -46,8 +46,10 @@ public class ZoneComponent extends Component {
 				return "P:" + Population + " H:" + Happiness+ " D:" + Density;
 			case Commercial:
 				return "E:" + Employeed + " D:" + Density;
-			default:
-				return zoneType.toString();
+			case Industrial:
+				return "E:" + Employeed + " D:" + Density;
+				default:
+					return "";
 		}
 		
 	}

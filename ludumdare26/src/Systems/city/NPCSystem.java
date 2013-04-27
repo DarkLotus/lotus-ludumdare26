@@ -76,8 +76,29 @@ public class NPCSystem extends IntervalEntityProcessingSystem {
 	 * @param npc
 	 */
 	private void assignJob(Entity e, NPCComponent npc) {
-		// TODO Auto-generated method stub
+		ImmutableBag<Entity> entities = null;
+		if(_rand.nextBoolean())
+		entities = ComponentHelper.GetZonesInRange(e, ZoneType.Commercial, 0);
+		else
+		entities = ComponentHelper.GetZonesInRange(e, ZoneType.Industrial, 0);
+		ZoneComponent bestComponent = null;
+		Entity bestEntity = null;
 		
+		for (int i = 0; i < entities.size(); i++) {
+			Entity resEntity = entities.get(i);
+			ZoneComponent zoneComponent = zc.get(resEntity);
+			if(zoneComponent.Employeed < zoneComponent.MaxEmployees()){
+					if(bestComponent == null || bestComponent.Employeed > zoneComponent.Employeed){
+					bestComponent = zoneComponent;
+					bestEntity = resEntity;}
+				}
+			}
+		if(bestComponent == null || bestEntity == null)
+			return;
+		npc.EmployerID = bestEntity.getId();
+		bestComponent.Employeed++;
+		Logger.Log("Assigning Job:" + bestEntity.getId()+ " to #" + e.getId());
+		return;
 	}
 
 	/**
@@ -86,17 +107,24 @@ public class NPCSystem extends IntervalEntityProcessingSystem {
 	 */
 	private void assignResidence(Entity e, NPCComponent npc) {
 		ImmutableBag<Entity> entities = ComponentHelper.GetZonesInRange(e, ZoneType.Residential, 0);
+		ZoneComponent bestComponent = null;
+		Entity bestEntity = null;
 		for (int i = 0; i < entities.size(); i++) {
 			Entity resEntity = entities.get(i);
 			ZoneComponent zoneComponent = zc.get(resEntity);
 			if(zoneComponent.Population < zoneComponent.MaxPop()){
-				npc.ResidenceID = resEntity.getId();
-				zoneComponent.Population++;
-				Logger.Log("Assigning Residence:" + resEntity.getId()+ " to #" + e.getId());
-				return;
+				if(bestComponent == null || bestComponent.Population > zoneComponent.Population){
+				bestComponent = zoneComponent;
+				bestEntity = resEntity;}
 			}
 			
 		}
+		if(bestComponent == null || bestEntity == null)
+			return;
+		npc.ResidenceID = bestEntity.getId();
+		bestComponent.Population++;
+		Logger.Log("Assigning Residence:" + bestEntity.getId()+ " to #" + e.getId());
+		return;
 	}
 
 }
