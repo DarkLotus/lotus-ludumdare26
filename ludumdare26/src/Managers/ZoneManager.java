@@ -14,12 +14,15 @@ import helpers.Save;
 import helpers.SaveObject;
 
 
-import Enums.ZoneTypes;
+import Enums.ZoneType;
+
 import World.World;
 
 import com.artemis.Component;
+import com.artemis.ComponentMapper;
 import com.artemis.Entity;
 
+import com.artemis.annotations.Mapper;
 import com.artemis.managers.GroupManager;
 import com.artemis.utils.Bag;
 import com.artemis.utils.ImmutableBag;
@@ -30,6 +33,9 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+
+import components.LabelComponent;
+import components.city.ZoneComponent;
 
 
 /**
@@ -44,14 +50,14 @@ public class ZoneManager  {
 	 * @param Range 
 	 * @return 
 	 */
-	public static ImmutableBag<Entity> GetZonesInRange(Entity e, ZoneTypes Ttype, int Range) {
+	public static ImmutableBag<Entity> GetZonesInRange(Entity e, ZoneType Ttype, int Range) {
 		// TODO Auto-generated method stub
 		switch(Ttype){
-			case Res:
+			case Residential:
 				return e.getWorld().getManager(GroupManager.class).getEntities("Residential");
-			case Com:
+			case Commercial:
 				return e.getWorld().getManager(GroupManager.class).getEntities("Commercial");
-			case Ind:
+			case Industrial:
 				return e.getWorld().getManager(GroupManager.class).getEntities("Industrial");
 			default:
 				return null;
@@ -59,7 +65,10 @@ public class ZoneManager  {
 		
 		//return new Entity[0];
 	}
+
 	
+	
+		
 	
 }
 

@@ -14,6 +14,7 @@ import com.artemis.Entity;
 import com.artemis.annotations.Mapper;
 import com.artemis.systems.IntervalEntityProcessingSystem;
 import com.artemis.systems.VoidEntitySystem;
+import com.jameskidd.ludumdare26.EntityFactory;
 
 
 import components.OnCursorComponent;
@@ -61,7 +62,8 @@ public class WorldSystem extends IntervalEntityProcessingSystem {
 			worldComponent.Month = 1;
 			worldComponent.Year++;
 		}
-		
+		if(worldComponent.Happiness >= 50 && worldComponent.AvailHousing > 0 && worldComponent.AvailJobs > 0)
+			e.getWorld().addEntity(EntityFactory.createNPC(e.getWorld()));	
 	}
 	
 	

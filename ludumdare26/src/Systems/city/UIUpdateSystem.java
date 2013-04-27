@@ -49,20 +49,21 @@ public class UIUpdateSystem extends IntervalEntityProcessingSystem {
 	
 	@Override
 	protected void process(Entity e) {
-		World world = (World) e.getWorld();
 		LabelComponent l = lc.get(e);
 		
 		switch(l.ElementName){
 			case Money:
-				l.LabelString =  "$" + ComponentHelper.GetPlayerComponent(world).Money;
+				l.LabelString =  "$" + ComponentHelper.GetPlayerComponent().Money;
 				break;
 			case Date:
-				l.LabelString = "Date: " + ComponentHelper.getWorldComponent(world).Date();
+				l.LabelString = "Date: " + ComponentHelper.getWorldComponent().Date();
 				break;
+			case Population:
+				l.LabelString = "Pop: " + ComponentHelper.getWorldComponent().TotalPopulation();
 			default:
 				break;
 		}
-		Logger.Log(""+e.getId() + l.ElementName + " " + l.LabelString);
+		//Logger.Log(""+e.getId() + l.ElementName + " " + l.LabelString);
 	
 		
 	}

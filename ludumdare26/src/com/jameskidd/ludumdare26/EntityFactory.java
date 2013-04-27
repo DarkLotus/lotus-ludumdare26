@@ -17,6 +17,7 @@ import components.PlayerComponent;
 import components.SpriteComponent;
 import components.UIButtonComponent;
 import components.WorldPositionComponent;
+import components.city.NPCComponent;
 import components.city.PowerDeltaComponent;
 import components.city.TrafficComponent;
 import components.city.WorldComponent;
@@ -137,6 +138,15 @@ public class EntityFactory {
 		Entity entity = world.createEntity();
 		entity.addComponent(new WorldComponent());
 		world.getManager(GroupManager.class).add(entity, "World");
+		return entity;
+	}
+	/**
+	 * @return
+	 */
+	public static Entity createNPC(World world) {
+		Entity entity = world.createEntity();
+		entity.addComponent(new NPCComponent());
+		world.getManager(GroupManager.class).add(entity, "NPC");
 		return entity;
 	}
 

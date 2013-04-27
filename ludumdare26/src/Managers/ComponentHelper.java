@@ -14,7 +14,7 @@ import helpers.Save;
 import helpers.SaveObject;
 
 
-import Enums.ZoneTypes;
+import Enums.ZoneType;
 import World.World;
 
 import com.artemis.Component;
@@ -46,14 +46,14 @@ public class ComponentHelper  {
 	 * @param Range 
 	 * @return 
 	 */
-	public static ImmutableBag<Entity> GetZonesInRange(Entity e, ZoneTypes Ttype, int Range) {
+	public static ImmutableBag<Entity> GetZonesInRange(Entity e, ZoneType Ttype, int Range) {
 		// TODO Auto-generated method stub
 		switch(Ttype){
-			case Res:
+			case Residential:
 				return e.getWorld().getManager(GroupManager.class).getEntities("Residential");
-			case Com:
+			case Commercial:
 				return e.getWorld().getManager(GroupManager.class).getEntities("Commercial");
-			case Ind:
+			case Industrial:
 				return e.getWorld().getManager(GroupManager.class).getEntities("Industrial");
 			default:
 				return null;
@@ -63,19 +63,18 @@ public class ComponentHelper  {
 	}
 
 	/**
-	 * @param world 
 	 * @return
 	 */
-	public static PlayerComponent GetPlayerComponent(World world) {
-		return world.getManager(GroupManager.class).getEntities("Player").get(0).getComponent(PlayerComponent.class);
+	public static PlayerComponent GetPlayerComponent() {
+		return World.Instance.getManager(GroupManager.class).getEntities("Player").get(0).getComponent(PlayerComponent.class);
 	}
 
 	/**
 	 * @param world
 	 * @return
 	 */
-	public static WorldComponent getWorldComponent(World world) {
-		return world.getManager(GroupManager.class).getEntities("World").get(0).getComponent(WorldComponent.class);
+	public static WorldComponent getWorldComponent() {
+		return World.Instance.getManager(GroupManager.class).getEntities("World").get(0).getComponent(WorldComponent.class);
 	}
 	
 	

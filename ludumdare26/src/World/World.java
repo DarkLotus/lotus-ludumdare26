@@ -16,6 +16,7 @@ import Systems.UIRenderSystem;
 
 import Systems.city.NPCSystem;
 import Systems.city.UIUpdateSystem;
+import Systems.city.ZoneSystem;
 
 import Systems.city.WorldSystem;
 
@@ -42,12 +43,13 @@ import components.city.TrafficComponent;
  *
  */
 public class World extends com.artemis.World {
+	public static World Instance;
 	OrthographicCamera _camera;
 	OrthographicCamera _uiCamera;
 
 	public World(){
 		super();
-		
+		Instance = this;
 		//_guiGameGUI = new InGameGUI(_world);
 		this._camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		this._uiCamera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -74,6 +76,7 @@ public class World extends com.artemis.World {
 		
 		setSystem(new WorldSystem(tickRate*24));
 		setSystem(new NPCSystem(tickRate));
+		setSystem(new ZoneSystem(tickRate));
 		setSystem(new UIUpdateSystem(tickRate*24));
 		//setSystem(new ResidentialSystem(1f));
 		setupSomeButtons();
@@ -105,6 +108,10 @@ public class World extends com.artemis.World {
 		entity2.addComponent(new LabelComponent("", null, UIElementName.Date));
 				
 		addEntity(entity2);
+		Entity entity3 = createEntity();
+		entity3.addComponent(new LabelComponent("", null, UIElementName.Population));
+				
+		addEntity(entity3);
 		
 	}
 	

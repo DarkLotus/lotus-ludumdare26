@@ -15,6 +15,11 @@ public class WorldComponent extends Component {
 	
 	public int Year,Month,Day;
 	
+	public int Population, PopulationHigh;
+	
+	public int Happiness = 50;
+	
+	public int AvailHousing,AvailJobs;
 	public WorldComponent(){
 		Year = 2000;
 		Month = 0;
@@ -25,6 +30,15 @@ public class WorldComponent extends Component {
 	
 	public String Date() {
 		return Day + "/" + Month + "/" + Year;
+	}
+
+
+
+	/**
+	 * @return
+	 */
+	public String TotalPopulation() {
+		return ""+Population;
 	}
 	
 }
