@@ -4,6 +4,7 @@
 package World;
 
 import Enums.UIElementName;
+import Managers.ComponentHelper;
 import Managers.PersistenceManager;
 
 import Systems.BuildSystem;
@@ -43,6 +44,9 @@ import components.city.TrafficComponent;
  *
  */
 public class World extends com.artemis.World {
+	protected static final int ZONEPRICE = 100;
+	protected static final int POWERPLANTPRICE = 5000;
+	protected static final int ROADPRICE = 50;
 	public static World Instance;
 	OrthographicCamera _camera;
 	OrthographicCamera _uiCamera;
@@ -155,6 +159,9 @@ public class World extends com.artemis.World {
 				Logger.Log("clicked room");
 				//TODO check for gold would be in this phase i guess.
 				//getSystem(RoomBuildSystem.class).StartBuild(new RoomComponent());
+				if(ComponentHelper.GetPlayerComponent().Money < ZONEPRICE)
+					return;
+				ComponentHelper.GetPlayerComponent().Money -= ZONEPRICE;
 				addEntity(EntityFactory.createResidential(getWorld()));
 
 			}}));
@@ -163,8 +170,9 @@ public class World extends com.artemis.World {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Logger.Log("clicked room");
-				//TODO check for gold would be in this phase i guess.
-				//getSystem(RoomBuildSystem.class).StartBuild(new RoomComponent());
+				if(ComponentHelper.GetPlayerComponent().Money < ZONEPRICE)
+					return;
+				ComponentHelper.GetPlayerComponent().Money -= ZONEPRICE;
 				addEntity(EntityFactory.createComercial(getWorld()));
 
 			}}));
@@ -172,9 +180,9 @@ public class World extends com.artemis.World {
 
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				Logger.Log("clicked room");
-				//TODO check for gold would be in this phase i guess.
-				//getSystem(RoomBuildSystem.class).StartBuild(new RoomComponent());
+				if(ComponentHelper.GetPlayerComponent().Money < ZONEPRICE)
+					return;
+				ComponentHelper.GetPlayerComponent().Money -= ZONEPRICE;
 				addEntity(EntityFactory.createIndustrial(getWorld()));
 
 			}}));
@@ -182,9 +190,9 @@ public class World extends com.artemis.World {
 
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				Logger.Log("clicked room");
-				//TODO check for gold would be in this phase i guess.
-				//getSystem(RoomBuildSystem.class).StartBuild(new RoomComponent());
+				if(ComponentHelper.GetPlayerComponent().Money < POWERPLANTPRICE)
+					return;
+				ComponentHelper.GetPlayerComponent().Money -= POWERPLANTPRICE;
 				addEntity(EntityFactory.createPowerPlant(getWorld()));
 
 			}}));
@@ -193,9 +201,9 @@ public class World extends com.artemis.World {
 
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				Logger.Log("clicked road");
-				//TODO check for gold would be in this phase i guess.
-				//getSystem(RoomBuildSystem.class).StartBuild(new RoomComponent());
+				if(ComponentHelper.GetPlayerComponent().Money < ROADPRICE)
+					return;
+				ComponentHelper.GetPlayerComponent().Money -= ROADPRICE;
 				addEntity(EntityFactory.createRoad(getWorld()));
 
 			}}));
