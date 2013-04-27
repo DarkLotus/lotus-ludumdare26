@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="tileset" tilewidth="64" tileheight="64">
+  <image source="tileset.png" width="2048" height="2048"/>
+  <terraintypes>
+   <terrain name="grass" tile="-1"/>
+   <terrain name="dirt" tile="-1"/>
+   <terrain name="grass2" tile="-1"/>
+  </terraintypes>
+  <tile id="82" terrain=",,,1"/>
+  <tile id="83" terrain=",,1,1"/>
+  <tile id="84" terrain=",,1,"/>
+  <tile id="85" terrain=",,,0"/>
+  <tile id="86" terrain=",,0,0"/>
+  <tile id="87" terrain=",,0,"/>
+  <tile id="114" terrain=",1,,1"/>
+  <tile id="115" terrain="1,1,1,1"/>
+  <tile id="116" terrain="1,,1,"/>
+  <tile id="117" terrain=",0,,0"/>
+  <tile id="118" terrain="0,0,0,0"/>
+  <tile id="119" terrain="0,,0,"/>
+  <tile id="146" terrain=",1,,"/>
+  <tile id="147" terrain="1,1,,"/>
+  <tile id="148" terrain="1,,,"/>
+  <tile id="149" terrain=",0,,"/>
+  <tile id="150" terrain="0,0,,"/>
+  <tile id="151" terrain="0,,,"/>
+  <tile id="181" terrain="0,0,0,0"/>
+  <tile id="182" terrain="0,0,0,0"/>
+  <tile id="183" terrain="0,0,0,0"/>
+  <tile id="213" terrain="2,2,2,"/>
+  <tile id="214" terrain="2,2,,2"/>
+  <tile id="245" terrain="2,,2,2"/>
+  <tile id="246" terrain=",2,2,2"/>
+ </tileset>
+ <tileset firstgid="1025" name="objects" tilewidth="64" tileheight="64">
+  <image source="objects.png" width="2048" height="2048"/>
+ </tileset>
+ <layer name="terrain" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3XMRKDMAwEQH+d9/AP3pUmzDB0TmxJhi2uvz270dZa2x6S45vsHvz8/PxZ/p5kd+afu0V2D35+fv7I7Ldk9+ntOyvZTn7+VfxRnSLDz8+f46+wNT8/P381/4z8e//yv9s/YrNoMz//3R+5QVV/1AaV/Bl/oJr/ugE/Pz8/P//q/p676/RHvElF/6+dRt+/Vbrx8/Pz8/Pz81fyP2XjyuHnXz38/Pz8/Pxv9I/MB46zQq0AQAAA
+  </data>
+ </layer>
+ <layer name="Walls" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2aAQrCMAxFN/Uk6km8/6FEUCgSXftpsmjeg0KQtunTde1WlwUAAAAAAOB3OTbxabdR9PMY72FiuTZ9X56fZf4e1j/JoYJ/vhyz52TvfPVi1D/z9aKAv2/9b2zNpYi1aU//rb4y3v/wj8uNvz+Z/V979Fnl1vR9XrQ9RqR/Rqr7K9dku463a37E/jYD64e4CvjbcRXwt+Mq4G/HVcDfjquAvx1XAX87nk3v2cT7ewDv96xR/mrfI+2U8x/r3FV5dp7pobaLnr8RY8PfP4cK/j51o3Oo4O9TNzqHCv4+daNzqIzsl9TzhMz+EeDfz+wz2ZlFfY77l9804v6XGfxj22UD/9h22ajur67NVf6HMsIdVT9bTwBAAAA=
+  </data>
+ </layer>
+ <layer name="TempDeco" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3aQQoCMQwAwC71ub5JfYcH9RsqqN/Qg1oPgpRWZBWl6wwEkpKF7iX0kBCGY9699/0khjBNMYv1PO8r1a1apPsvU6xiPc/7SnWrdun++xSHWM/zvlLdqnO6/+X2D6N6nveVagDgu8aFN0jp7Nk5AAAAAAAAtG4oO1x9DWWHq6+h7HD1ZYfrv5l/5p/5F8y/Hzt2IZwe9vjveX7+aeaf+Wf+BfMPgL+3Tu/NTYpt91oN0JIrMkI84ABAAAA=
+  </data>
+ </layer>
+</map>

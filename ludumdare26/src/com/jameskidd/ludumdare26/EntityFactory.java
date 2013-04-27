@@ -15,7 +15,9 @@ import components.PlayerComponent;
 import components.SpriteComponent;
 import components.UIButtonComponent;
 import components.WorldPositionComponent;
-
+import components.city.PowerDeltaComponent;
+import components.city.TrafficComponent;
+import components.city.ZoneComponent;
 
 /**
  * @author James
@@ -53,10 +55,76 @@ public class EntityFactory {
 		entity.addComponent(new PlayerComponent(0,0,10000));
 		//entity.addComponent(new SpriteComponent(5));
 		world.getManager(GroupManager.class).add(entity, "persist");
+		world.getManager(GroupManager.class).add(entity, "Player");
+		return entity;
+	}
+	/**
+	 * @param _world
+	 * @return
+	 */
+
+	public static Entity createResidential(World world) {
+		Entity entity = world.createEntity();
+		//entity.addComponent(new WorldPositionComponent(5*64,5*64));
+		//entity.addComponent(new VelocityComponent());
+		entity.addComponent(new WorldPositionComponent());
+		entity.addComponent(new OnCursorComponent());
+		entity.addComponent(new SpriteComponent("Residential"));
+		entity.addComponent(new ZoneComponent());
+		entity.addComponent(new PowerDeltaComponent());
+		//world.getManager(GroupManager.class).add(entity, "persist");
+		world.getManager(GroupManager.class).add(entity, "Residential");
 		return entity;
 	}
 
-
-	
+	public static Entity createComercial(World world) {
+		Entity entity = world.createEntity();
+		entity.addComponent(new WorldPositionComponent());
+		entity.addComponent(new OnCursorComponent());
+		entity.addComponent(new SpriteComponent("Commercial"));
+		entity.addComponent(new ZoneComponent());
+		entity.addComponent(new PowerDeltaComponent());
+		//world.getManager(GroupManager.class).add(entity, "persist");
+		world.getManager(GroupManager.class).add(entity, "Commercial");
+		return entity;
+	}
+	public static Entity createIndustrial(World world) {
+		Entity entity = world.createEntity();
+		entity.addComponent(new WorldPositionComponent());
+		entity.addComponent(new OnCursorComponent());
+		entity.addComponent(new SpriteComponent("Industrial"));
+		entity.addComponent(new ZoneComponent());
+		entity.addComponent(new PowerDeltaComponent());
+		//world.getManager(GroupManager.class).add(entity, "persist");
+		world.getManager(GroupManager.class).add(entity, "Industrial");
+		return entity;
+	}
+	public static Entity createPowerPlant(World world) {
+		Entity entity = world.createEntity();
+		entity.addComponent(new WorldPositionComponent());
+		entity.addComponent(new OnCursorComponent());
+		entity.addComponent(new SpriteComponent("Power Plant"));
+		//entity.addComponent(new IndustrialComponent());
+		entity.addComponent(new PowerDeltaComponent());
+		//world.getManager(GroupManager.class).add(entity, "persist");
+		world.getManager(GroupManager.class).add(entity, "Power");
+		return entity;
+	}
+	/**
+	 * @param world
+	 * @return
+	 */
+	public static Entity createRoad(World world) {
+		Entity entity = world.createEntity();
+		entity.addComponent(new WorldPositionComponent());
+		entity.addComponent(new OnCursorComponent());
+		entity.addComponent(new SpriteComponent("Road"));
+		entity.addComponent(new TrafficComponent());
+		//entity.addComponent(new IndustrialComponent());
+		//entity.addComponent(new PowerDeltaComponent());
+		//world.getManager(GroupManager.class).add(entity, "persist");
+		world.getManager(GroupManager.class).add(entity, "Road");
+		return entity;
+	}
 
 }
